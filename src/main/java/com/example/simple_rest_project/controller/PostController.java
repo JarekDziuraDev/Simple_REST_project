@@ -2,6 +2,7 @@ package com.example.simple_rest_project.controller;
 
 import com.example.simple_rest_project.mdoel.Post;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -14,8 +15,8 @@ public class PostController {
         throw new IllegalArgumentException("Not implemented yet");
     }
 
-    @GetMapping("/posts")
-    public Post getSinglePost() {
+    @GetMapping("/posts/{id}")
+    public Post getSinglePost(@PathVariable long id) {
         throw new IllegalArgumentException("Not implemented yet");
     }
 
