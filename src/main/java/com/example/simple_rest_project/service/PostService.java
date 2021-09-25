@@ -6,6 +6,7 @@ import com.example.simple_rest_project.repository.CommentRepository;
 import com.example.simple_rest_project.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +20,8 @@ public class PostService {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
-    public List<Post> getPosts(int page) {
-        return postRepository.findAllPosts(PageRequest.of(page , PAGE_SIZE));
+    public List<Post> getPosts(int page, Sort.Direction sort) {
+        return postRepository.findAllPosts(PageRequest.of(page , PAGE_SIZE, Sort.by(sort, "id")));
     }
 
     public Post getSinglePost(long id) {
@@ -28,8 +29,8 @@ public class PostService {
                 .orElseThrow();
     }
 
-    public List<Post> getPostsWithComments(int page) {
-        List<Post> allPosts = postRepository.findAllPosts(PageRequest.of(page , PAGE_SIZE));
+    public List<Post> getPostsWithComments(int page, Sort.Direction sort) {
+        List<Post> allPosts = postRepository.findAllPosts(PageRequest.of(page , PAGE_SIZE, Sort.by(sort, "id")));
         List<Long> ids = allPosts.stream()
                 .map(Post::getId)
                 .collect(Collectors.toList());
