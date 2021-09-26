@@ -19,7 +19,7 @@ public class Post {
     private String content;
     private LocalDateTime created;
 
-    @OneToMany
-    @JoinColumn(name = "postId")
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "postId", updatable = false, insertable = false)
     private List<Comment> comment;
 }

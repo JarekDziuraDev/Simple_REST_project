@@ -48,4 +48,15 @@ public class PostService {
     public Post addPost(Post post) {
         return postRepository.save(post);
     }
+
+    public Post editPost(Post post) {
+        Post postToEdit = postRepository.findById(post.getId()).orElseThrow();
+        postToEdit.setTitle(post.getTitle());
+        postToEdit.setContent(post.getContent());
+        return postToEdit;
+    }
+
+    public void deletePost(long id) {
+        postRepository.deleteById(id);
+    }
 }

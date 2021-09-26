@@ -39,4 +39,14 @@ public class PostController {
     public Post addPost(@RequestBody Post post) {
         return postService.addPost(post);
     }
+
+    @PutMapping("/posts")
+    public Post editPost(@RequestBody Post post) {
+        return postService.editPost(post);
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public void deletePost(@PathVariable long id) {
+        postService.deletePost(id);
+    }
 }
